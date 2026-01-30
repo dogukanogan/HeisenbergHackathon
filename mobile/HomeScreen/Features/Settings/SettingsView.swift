@@ -38,6 +38,7 @@ struct SettingsView: View {
                     TextField("Kan Grubu", text: $bloodType)
                 } header: {
                     Text("Kişisel Bilgiler")
+                        .tint(DS.Colors.primary)
                 }
 
                 Section {

@@ -13,12 +13,9 @@ struct RegisterView: View {
     @State private var firstName = ""
     @State private var lastName = ""
     @State private var bloodType = ""
-
     @State private var birthDate = Date()
 
     @State private var enableMultipleAddresses = false
-
-    // adresler
     @State private var addresses: [AddressForm] = [
         AddressForm(label: "Ev", addressLine: "", district: "", city: "")
     ]
@@ -30,81 +27,77 @@ struct RegisterView: View {
     }
 
     private var canSubmit: Bool {
-        guard !firstName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
-              !lastName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
-              !bloodType.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
-              computedAge >= 0
+        guard !firstName.trimmed.isEmpty,
+              !lastName.trimmed.isEmpty,
+              !bloodType.trimmed.isEmpty
         else { return false }
-
-        // en az 1 adres ve zorunlu alanları dolu olsun
         return addresses.allSatisfy { $0.isValid }
     }
 
     var body: some View {
         NavigationStack {
-            Form {
-                Section("Kişisel Bilgiler") {
-                    TextField("Ad", text: $firstName)
-                    TextField("Soyad", text: $lastName)
+            ScrollView {
+                VStack(spacing: DS.Spacing.m) {
+                    header
 
-                    DatePicker(
-                        "Doğum Tarihi",
-                        selection: $birthDate,
-                        displayedComponents: .date
-                    )
+                    DSCard("Kişisel Bilgiler") {
+                        VStack(spacing: DS.Spacing.s) {
+                            DSField(title: "Ad", text: $firstName)
+                            DSField(title: "Soyad", text: $lastName)
 
-                    // yaş kullanıcıya bilgi olarak gösterilsin
-                    Text("Yaş: \(computedAge)")
-                        .foregroundStyle(DS.Colors.muted)
+                            VStack(alignment: .leading, spacing: DS.Spacing.xs) {
+                                Text("Doğum Tarihi")
+                                    .font(DS.Typography.caption)
+                                    .foregroundStyle(DS.Colors.muted)
 
-                    TextField("Kan Grubu (örn: A+)", text: $bloodType)
-                        .textInputAutocapitalization(.characters)
-                }
+                                DatePicker("", selection: $birthDate, displayedComponents: .date)
+                                    .datePickerStyle(.compact)
+                                    .labelsHidden()
 
-                Section("Adres") {
-                    Toggle("Birden fazla adres eklemek istiyorum", isOn: $enableMultipleAddresses)
-                        .onChange(of: enableMultipleAddresses) { _, newValue in
-                            if !newValue {
-                                // kapatınca sadece 1 adres bırak
-                                if let first = addresses.first {
-                                    addresses = [first]
-                                } else {
-                                    addresses = [AddressForm(label: "Ev", addressLine: "", district: "", city: "")]
-                                }
-                            } else {
-                                // açınca en az 1 adres zaten var
-                                if addresses.isEmpty {
-                                    addresses = [AddressForm(label: "Ev", addressLine: "", district: "", city: "")]
+                                Text("Yaş: \(computedAge)")
+                                    .font(DS.Typography.caption)
+                                    .foregroundStyle(DS.Colors.muted)
+                            }
+
+                            DSField(title: "Kan Grubu", text: $bloodType)
+                                .textInputAutocapitalization(.characters)
+                        }
+                    }
+
+                    DSCard("Adres") {
+                        VStack(spacing: DS.Spacing.s) {
+                            Toggle("Birden fazla adres eklemek istiyorum", isOn: $enableMultipleAddresses)
+                                .tint(DS.Colors.primary)
+
+                            ForEach($addresses) { $addr in
+                                AddressFormCard(address: $addr, canRemove: enableMultipleAddresses && addresses.count > 1) {
+                                    addresses.removeAll { $0.id == addr.id }
                                 }
                             }
-                        }
 
-                    ForEach($addresses) { $addr in
-                        AddressFormView(address: $addr)
-                    }
-
-                    if enableMultipleAddresses {
-                        Button {
-                            addresses.append(AddressForm(label: "Yeni Adres", addressLine: "", district: "", city: ""))
-                        } label: {
-                            Label("Adres Ekle", systemImage: "plus")
+                            if enableMultipleAddresses {
+                                Button {
+                                    addresses.append(AddressForm(label: "Yeni Adres", addressLine: "", district: "", city: ""))
+                                } label: {
+                                    Label("Adres Ekle", systemImage: "plus")
+                                }
+                                .foregroundStyle(DS.Colors.primary)
+                            }
                         }
                     }
-                }
 
-                Section("İletişim (Opsiyonel)") {
-                    TextField("Telefon", text: $phone)
-                        .keyboardType(.phonePad)
-                }
+                    DSCard("İletişim (Opsiyonel)") {
+                        DSField(title: "Telefon", text: $phone)
+                            .keyboardType(.phonePad)
+                    }
 
-                Section {
                     Button {
-                        let trimmedPhone = phone.trimmingCharacters(in: .whitespacesAndNewlines)
+                        let trimmedPhone = phone.trimmed
                         let profile = UserProfile(
-                            firstName: firstName.trimmingCharacters(in: .whitespacesAndNewlines),
-                            lastName: lastName.trimmingCharacters(in: .whitespacesAndNewlines),
+                            firstName: firstName.trimmed,
+                            lastName: lastName.trimmed,
                             birthDate: birthDate,
-                            bloodType: bloodType.trimmingCharacters(in: .whitespacesAndNewlines),
+                            bloodType: bloodType.trimmed,
                             addresses: addresses.map { $0.toModel() },
                             phone: trimmedPhone.isEmpty ? nil : trimmedPhone
                         )
@@ -112,17 +105,111 @@ struct RegisterView: View {
                         onCompleted()
                     } label: {
                         Text("Kaydı Tamamla")
-                            .frame(maxWidth: .infinity, alignment: .center)
                     }
+                    .buttonStyle(DSPrimaryButtonStyle())
                     .disabled(!canSubmit)
+                    .opacity(canSubmit ? 1 : 0.5)
+
+                    Spacer(minLength: DS.Spacing.xl)
+                }
+                .padding(DS.Spacing.l)
+            }
+            .background(DS.Colors.background)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Kayıt")
+                        .font(DS.Typography.title)
+                        .foregroundStyle(DS.Colors.text)
                 }
             }
-            .navigationTitle("Kayıt")
+        }
+    }
+
+    private var header: some View {
+        VStack(alignment: .leading, spacing: DS.Spacing.s) {
+            HStack(spacing: DS.Spacing.s) {
+                Circle()
+                    .fill(DS.Colors.primarySoft)
+                    .frame(width: 44, height: 44)
+                    .overlay(
+                        Image(systemName: "exclamationmark.triangle.fill")
+                            .foregroundStyle(DS.Colors.primary)
+                    )
+
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Acil Durum Profili")
+                        .font(DS.Typography.title)
+                    Text("Bilgilerini kaydet, gerektiğinde hızlıca iletilebilsin.")
+                        .font(DS.Typography.caption)
+                        .foregroundStyle(DS.Colors.muted)
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+}
+
+// MARK: - Small components
+
+private struct DSField: View {
+    let title: String
+    @Binding var text: String
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: DS.Spacing.xs) {
+            Text(title)
+                .font(DS.Typography.caption)
+                .foregroundStyle(DS.Colors.muted)
+
+            TextField("", text: $text)
+                .textFieldStyle(.plain)
+                .padding(12)
+                .background(DS.Colors.background)
+                .clipShape(RoundedRectangle(cornerRadius: DS.Radius.m, style: .continuous))
+                .overlay(
+                    RoundedRectangle(cornerRadius: DS.Radius.m, style: .continuous)
+                        .stroke(DS.Colors.border, lineWidth: 1)
+                )
         }
     }
 }
 
-// MARK: - Address Form helpers (UI için)
+private struct AddressFormCard: View {
+    @Binding var address: AddressForm
+    let canRemove: Bool
+    let onRemove: () -> Void
+
+    var body: some View {
+        VStack(spacing: DS.Spacing.s) {
+            HStack {
+                Text("Adres")
+                    .font(DS.Typography.section)
+                Spacer()
+                if canRemove {
+                    Button(role: .destructive) { onRemove() } label: {
+                        Image(systemName: "trash")
+                    }
+                }
+            }
+            DSField(title: "Adres Adı (Ev/İş)", text: $address.label)
+            DSField(title: "Adres", text: $address.addressLine)
+            HStack(spacing: DS.Spacing.s) {
+                DSField(title: "İlçe", text: $address.district)
+                DSField(title: "İl", text: $address.city)
+            }
+        }
+        .padding(DS.Spacing.m)
+        .background(DS.Colors.primarySoft.opacity(0.55))
+        .clipShape(RoundedRectangle(cornerRadius: DS.Radius.l, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: DS.Radius.l, style: .continuous)
+                .stroke(DS.Colors.border, lineWidth: 1)
+        )
+    }
+}
+
+// MARK: - Address Form model (UI)
 private struct AddressForm: Identifiable, Equatable {
     var id: UUID = UUID()
     var label: String
@@ -131,39 +218,17 @@ private struct AddressForm: Identifiable, Equatable {
     var city: String
 
     var isValid: Bool {
-        !label.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
-        !addressLine.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
-        !district.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
-        !city.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        !label.trimmed.isEmpty &&
+        !addressLine.trimmed.isEmpty &&
+        !district.trimmed.isEmpty &&
+        !city.trimmed.isEmpty
     }
 
     func toModel() -> Address {
-        return Address(
-            id: id,
-            label: label,
-            addressLine: addressLine,
-            district: district,
-            city: city
-        )
+        Address(id: id, label: label.trimmed, addressLine: addressLine.trimmed, district: district.trimmed, city: city.trimmed)
     }
 }
 
-// MARK: - AddressFormView (UI parçası)
-private struct AddressFormView: View {
-    @Binding var address: AddressForm
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            TextField("Etiket (örn: Ev, İş)", text: $address.label)
-            TextField("Adres", text: $address.addressLine)
-            HStack {
-                TextField("İlçe", text: $address.district)
-                TextField("Şehir", text: $address.city)
-            }
-        }
-        .textInputAutocapitalization(.words)
-        .autocorrectionDisabled()
-        .padding(.vertical, 4)
-    }
+private extension String {
+    var trimmed: String { trimmingCharacters(in: .whitespacesAndNewlines) }
 }
-
