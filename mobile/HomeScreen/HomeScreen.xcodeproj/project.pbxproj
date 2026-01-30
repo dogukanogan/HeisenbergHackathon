@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10E0A1A42F2D478200057602 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E0A1A32F2D478000057602 /* HomeView.swift */; };
 		5C00D2BF2F2D14E300225E3A /* HomeScreenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C00D2BE2F2D146500225E3A /* HomeScreenApp.swift */; };
 		5C00D2C02F2D14F800225E3A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3263082F2D0A010065443A /* ContentView.swift */; };
 		5C00D2C12F2D155F00225E3A /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3263092F2D0A100065443A /* AppRouter.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10E0A1A32F2D478000057602 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5C00D2BE2F2D146500225E3A /* HomeScreenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenApp.swift; sourceTree = "<group>"; };
 		5C00D2C92F2D430900225E3A /* FirstRunWelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstRunWelcomeView.swift; sourceTree = "<group>"; };
 		5C3262F02F2D02BB0065443A /* HomeScreen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeScreen.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,6 +118,7 @@
 		5C3263052F2D095D0065443A /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				10E0A1A32F2D478000057602 /* HomeView.swift */,
 				5C32630D2F2D0A690065443A /* RegisterView.swift */,
 			);
 			path = Auth;
@@ -211,6 +214,7 @@
 				5C00D2C52F2D158600225E3A /* SettingsView.swift in Sources */,
 				5C00D2C02F2D14F800225E3A /* ContentView.swift in Sources */,
 				5C00D2C32F2D157700225E3A /* DesignSystem.swift in Sources */,
+				10E0A1A42F2D478200057602 /* HomeView.swift in Sources */,
 				5C00D2C22F2D156C00225E3A /* RegisterView.swift in Sources */,
 				5C00D2C62F2D15B300225E3A /* UserProfile.swift in Sources */,
 				5C00D2BF2F2D14E300225E3A /* HomeScreenApp.swift in Sources */,
