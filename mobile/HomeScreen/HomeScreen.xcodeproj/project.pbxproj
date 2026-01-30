@@ -6,17 +6,28 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXFileReference section */
-		5C3262F02F2D02BB0065443A /* HomeScreen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeScreen.app; sourceTree = BUILT_PRODUCTS_DIR; };
-/* End PBXFileReference section */
+/* Begin PBXBuildFile section */
+		5C00D2BF2F2D14E300225E3A /* HomeScreenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C00D2BE2F2D146500225E3A /* HomeScreenApp.swift */; };
+		5C00D2C02F2D14F800225E3A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3263082F2D0A010065443A /* ContentView.swift */; };
+		5C00D2C12F2D155F00225E3A /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3263092F2D0A100065443A /* AppRouter.swift */; };
+		5C00D2C22F2D156C00225E3A /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32630D2F2D0A690065443A /* RegisterView.swift */; };
+		5C00D2C32F2D157700225E3A /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32630A2F2D0A1A0065443A /* DesignSystem.swift */; };
+		5C00D2C42F2D158100225E3A /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3263102F2D0A9D0065443A /* ProfileStore.swift */; };
+		5C00D2C52F2D158600225E3A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32630E2F2D0A7C0065443A /* SettingsView.swift */; };
+		5C00D2C62F2D15B300225E3A /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32630B2F2D0A2C0065443A /* UserProfile.swift */; };
+/* End PBXBuildFile section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		5C3262F22F2D02BB0065443A /* HomeScreen */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = HomeScreen;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
+/* Begin PBXFileReference section */
+		5C00D2BE2F2D146500225E3A /* HomeScreenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenApp.swift; sourceTree = "<group>"; };
+		5C3262F02F2D02BB0065443A /* HomeScreen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeScreen.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C3263082F2D0A010065443A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5C3263092F2D0A100065443A /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		5C32630A2F2D0A1A0065443A /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
+		5C32630B2F2D0A2C0065443A /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		5C32630D2F2D0A690065443A /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		5C32630E2F2D0A7C0065443A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5C3263102F2D0A9D0065443A /* ProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStore.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		5C3262ED2F2D02BB0065443A /* Frameworks */ = {
@@ -32,7 +43,11 @@
 		5C3262E72F2D02BB0065443A = {
 			isa = PBXGroup;
 			children = (
-				5C3262F22F2D02BB0065443A /* HomeScreen */,
+				5C32630F2F2D0A8E0065443A /* Storage */,
+				5C3263042F2D09530065443A /* Features */,
+				5C3263032F2D094C0065443A /* Models */,
+				5C3263022F2D09250065443A /* DesignSystem */,
+				5C3263012F2D09110065443A /* App */,
 				5C3262F12F2D02BB0065443A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +58,65 @@
 				5C3262F02F2D02BB0065443A /* HomeScreen.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5C3263012F2D09110065443A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				5C00D2BE2F2D146500225E3A /* HomeScreenApp.swift */,
+				5C3263092F2D0A100065443A /* AppRouter.swift */,
+				5C3263082F2D0A010065443A /* ContentView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		5C3263022F2D09250065443A /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				5C32630A2F2D0A1A0065443A /* DesignSystem.swift */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		5C3263032F2D094C0065443A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5C32630B2F2D0A2C0065443A /* UserProfile.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5C3263042F2D09530065443A /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				5C3263062F2D09660065443A /* Settings */,
+				5C3263052F2D095D0065443A /* Auth */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		5C3263052F2D095D0065443A /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				5C32630D2F2D0A690065443A /* RegisterView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		5C3263062F2D09660065443A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				5C32630E2F2D0A7C0065443A /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		5C32630F2F2D0A8E0065443A /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				5C3263102F2D0A9D0065443A /* ProfileStore.swift */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -59,9 +133,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				5C3262F22F2D02BB0065443A /* HomeScreen */,
 			);
 			name = HomeScreen;
 			packageProductDependencies = (
@@ -119,6 +190,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C00D2C52F2D158600225E3A /* SettingsView.swift in Sources */,
+				5C00D2C02F2D14F800225E3A /* ContentView.swift in Sources */,
+				5C00D2C32F2D157700225E3A /* DesignSystem.swift in Sources */,
+				5C00D2C22F2D156C00225E3A /* RegisterView.swift in Sources */,
+				5C00D2C62F2D15B300225E3A /* UserProfile.swift in Sources */,
+				5C00D2BF2F2D14E300225E3A /* HomeScreenApp.swift in Sources */,
+				5C00D2C12F2D155F00225E3A /* AppRouter.swift in Sources */,
+				5C00D2C42F2D158100225E3A /* ProfileStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,12 +340,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = HomeScreen.HomeScreen;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gorkem.emergencyapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -293,12 +373,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = HomeScreen.HomeScreen;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gorkem.emergencyapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
