@@ -12,10 +12,13 @@ struct RegisterView: View {
 
     @State private var firstName = ""
     @State private var lastName = ""
-    @State private var bloodType = ""
+
+    // Kan grubu artık seçmeli
+    @State private var bloodType: String = "A+"
+
     @State private var birthDate = Date()
 
-    @State private var enableMultipleAddresses = false
+    // Adresler: tek adresle başla, isterse "Adres Ekle" ile çoğaltır
     @State private var addresses: [AddressForm] = [
         AddressForm(label: "Ev", addressLine: "", district: "", city: "")
     ]
@@ -28,9 +31,9 @@ struct RegisterView: View {
 
     private var canSubmit: Bool {
         guard !firstName.trimmed.isEmpty,
-              !lastName.trimmed.isEmpty,
-              !bloodType.trimmed.isEmpty
+              !lastName.trimmed.isEmpty
         else { return false }
+
         return addresses.allSatisfy { $0.isValid }
     }
 
@@ -59,30 +62,48 @@ struct RegisterView: View {
                                     .foregroundStyle(DS.Colors.muted)
                             }
 
-                            DSField(title: "Kan Grubu", text: $bloodType)
-                                .textInputAutocapitalization(.characters)
+                            // Kan grubu picker
+                            VStack(alignment: .leading, spacing: DS.Spacing.xs) {
+                                Text("Kan Grubu")
+                                    .font(DS.Typography.caption)
+                                    .foregroundStyle(DS.Colors.muted)
+
+                                Picker("Kan Grubu", selection: $bloodType) {
+                                    ForEach(["A+","A-","B+","B-","AB+","AB-","0+","0-"], id: \.self) { type in
+                                        Text(type).tag(type)
+                                    }
+                                }
+                                .pickerStyle(.menu)
+                                .tint(DS.Colors.primary)
+                                .padding(12)
+                                .background(DS.Colors.background)
+                                .clipShape(RoundedRectangle(cornerRadius: DS.Radius.m, style: .continuous))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: DS.Radius.m, style: .continuous)
+                                        .stroke(DS.Colors.border, lineWidth: 1)
+                                )
+                            }
                         }
                     }
 
                     DSCard("Adres") {
                         VStack(spacing: DS.Spacing.s) {
-                            Toggle("Birden fazla adres eklemek istiyorum", isOn: $enableMultipleAddresses)
-                                .tint(DS.Colors.primary)
-
                             ForEach($addresses) { $addr in
-                                AddressFormCard(address: $addr, canRemove: enableMultipleAddresses && addresses.count > 1) {
+                                AddressFormCard(
+                                    address: $addr,
+                                    canRemove: addresses.count > 1
+                                ) {
                                     addresses.removeAll { $0.id == addr.id }
                                 }
                             }
 
-                            if enableMultipleAddresses {
-                                Button {
-                                    addresses.append(AddressForm(label: "Yeni Adres", addressLine: "", district: "", city: ""))
-                                } label: {
-                                    Label("Adres Ekle", systemImage: "plus")
-                                }
-                                .foregroundStyle(DS.Colors.primary)
+                            Button {
+                                addresses.append(AddressForm(label: "Yeni Adres", addressLine: "", district: "", city: ""))
+                            } label: {
+                                Label("Adres Ekle", systemImage: "plus")
                             }
+                            .foregroundStyle(DS.Colors.primary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
 
@@ -97,7 +118,7 @@ struct RegisterView: View {
                             firstName: firstName.trimmed,
                             lastName: lastName.trimmed,
                             birthDate: birthDate,
-                            bloodType: bloodType.trimmed,
+                            bloodType: bloodType,
                             addresses: addresses.map { $0.toModel() },
                             phone: trimmedPhone.isEmpty ? nil : trimmedPhone
                         )
