@@ -1,10 +1,3 @@
-//
-//  AppRouter.swift
-//  HomeScreen
-//
-//  Created by Görkem Çelik on 30.01.2026.
-//
-
 import SwiftUI
 import Combine
 
@@ -27,44 +20,62 @@ final class AppRouter: ObservableObject {
     }
 
     func start() {
+        let isRegistered = ProfileStore.shared.isRegistered
+
+        // ✅ Kayıtlıysa hiç splash gösterme, direkt home
+        if isRegistered {
+            route = .home
+            return
+        }
+
+        // Kayıtlı değilse mevcut akış devam
         route = .splash
 
         Task { @MainActor in
-            // Splash ekranda biraz dursun
             try? await Task.sleep(nanoseconds: 1_200_000_000)
 
             let hasLaunchedBefore = UserDefaults.standard.bool(forKey: hasLaunchedKey)
-            let isRegistered = ProfileStore.shared.isRegistered
 
             if !hasLaunchedBefore {
-                // İlk kez açıldı → welcome butonları görünsün
                 UserDefaults.standard.set(true, forKey: hasLaunchedKey)
                 route = .firstRunWelcome
                 return
             }
 
-            // İlk kez değil → kayıt varsa home, yoksa register
-            route = isRegistered ? .home : .register
+            // kayıt yoksa her zaman welcome
+            route = .firstRunWelcome
         }
     }
+
 
     // Welcome ekranındaki buton aksiyonları
     func goToRegister() {
         route = .register
     }
 
+    // ✅ Geri dönmek için: Register/Login ekranından Welcome'a
+    func goToWelcome() {
+        route = .firstRunWelcome
+    }
+
     func goToLogin() {
-        // Login altyapısı yokken en mantıklısı register’a atmak
-        route = .register
+        // Login altyapısı yokken istenen davranış: home'a girsin
+        route = .home
     }
 
     func completeRegistration() {
         route = .home
     }
 
+    // ✅ Profil sıfırlayınca tekrar welcome'a dön (kayıt ekranına değil)
     func resetProfile() {
         ProfileStore.shared.clear()
-        route = .register
+        route = .firstRunWelcome
+    }
+
+    // ✅ Home'dan çıkış gibi kullanmak istersen (opsiyonel)
+    func logoutToWelcome() {
+        ProfileStore.shared.clear()
+        route = .firstRunWelcome
     }
 }
-

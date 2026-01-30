@@ -9,6 +9,9 @@ import SwiftUI
 
 struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var router: AppRouter
+    
+
 
     @State private var firstName = ""
     @State private var lastName = ""
@@ -22,6 +25,9 @@ struct SettingsView: View {
     ]
 
     @State private var phone = ""
+    @State private var showResetConfirm = false
+    @State private var showLogoutConfirm = false
+
 
     private var computedAge: Int {
         Calendar.current.dateComponents([.year], from: birthDate, to: Date()).year ?? 0
@@ -90,14 +96,41 @@ struct SettingsView: View {
                     .disabled(!canSave)
 
                     Button("Profili Sıfırla", role: .destructive) {
-                        ProfileStore.shared.clear()
-                        dismiss()
+                        showResetConfirm = true
                     }
+                    
+                    Button("Çıkış Yap", role: .destructive) {
+                        showLogoutConfirm = true
+                        }
                 }
             }
             .tint(DS.Colors.primary)
             .navigationTitle("Ayarlar")
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Geri") { dismiss() }
+                }
+            }
             .onAppear { loadProfile() }
+            .alert("Profili sıfırlamak istiyor musunuz?", isPresented: $showResetConfirm) {
+                Button("İptal", role: .cancel) { }
+                Button("Evet, Sıfırla", role: .destructive) {
+                    router.resetProfile()
+                    dismiss()
+                }
+            } message: {
+                Text("Tüm kayıtlı bilgiler silinecek ve giriş ekranına yönlendirileceksiniz.")
+            }
+            .alert("Çıkış yapmak istiyor musunuz?", isPresented: $showLogoutConfirm) {
+                Button("İptal", role: .cancel) { }
+                Button("Evet, Çıkış Yap", role: .destructive) {
+                    router.logoutToWelcome()   // veya resetProfile() ile aynı davranış
+                    dismiss()
+                }
+            } message: {
+                Text("Giriş ekranına yönlendirileceksiniz.")
+            }
+
         }
     }
 

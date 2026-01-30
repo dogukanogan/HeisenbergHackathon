@@ -9,6 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var router = AppRouter()
+    @State private var showMustRegisterAlert = false
+    @State private var mustRegisterMessage = "Lütfen önce kayıt olup bilgilerinizi girin."
+
 
     var body: some View {
         Group {
@@ -19,20 +22,53 @@ struct ContentView: View {
             case .firstRunWelcome:
                 FirstRunWelcomeView(
                     onRegister: { router.goToRegister() },
-                    onLogin: { router.goToLogin() }
+                    onLogin: {
+                        // Profil yoksa login saçma → uyarı göster
+                        if !ProfileStore.shared.isRegistered {
+                            showMustRegisterAlert = true
+                        } else {
+                            router.goToLogin()
+                        }
+                    }
                 )
 
             case .register:
                 RegisterView(onCompleted: {
                     router.completeRegistration()
                 })
+                .overlay(alignment: .topLeading) {
+                    Button {
+                        router.goToWelcome()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .font(.system(size: 16, weight: .semibold))
+                            .padding(10)
+                            .background(.ultraThinMaterial)
+                            .clipShape(Circle())
+                    }
+                    .padding(.top, 14)
+                    .padding(.leading, 14)
+                }
+
 
             case .home:
                 // Arkadaşın HomeView’ı gelince burayı HomeView() yapacağız.
-                HomePlaceholderView()
+                HomeView()
+                    .environmentObject(router)
             }
         }
+        .alert(
+                    "Bilgi",
+                    isPresented: $showMustRegisterAlert,
+                    actions: {
+                        Button("Tamam", role: .cancel) { }
+                    },
+                    message: {
+                        Text("Lütfen önce kayıt olup bilgilerinizi girin.")
+                    }
+                    )
     }
+    
 }
 
 // MARK: - Splash
