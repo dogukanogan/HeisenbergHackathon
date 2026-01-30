@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		5C3262F02F2D02BB0065443A /* HomeScreen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeScreen.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1027F6672F2D089700DD0AEC /* EmergencyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmergencyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		5C3262F22F2D02BB0065443A /* HomeScreen */ = {
+		1027F6692F2D089700DD0AEC /* EmergencyApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = HomeScreen;
+			path = EmergencyApp;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		5C3262ED2F2D02BB0065443A /* Frameworks */ = {
+		1027F6642F2D089700DD0AEC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -29,18 +29,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5C3262E72F2D02BB0065443A = {
+		1027F65E2F2D089700DD0AEC = {
 			isa = PBXGroup;
 			children = (
-				5C3262F22F2D02BB0065443A /* HomeScreen */,
-				5C3262F12F2D02BB0065443A /* Products */,
+				1027F6692F2D089700DD0AEC /* EmergencyApp */,
+				1027F6682F2D089700DD0AEC /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		5C3262F12F2D02BB0065443A /* Products */ = {
+		1027F6682F2D089700DD0AEC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5C3262F02F2D02BB0065443A /* HomeScreen.app */,
+				1027F6672F2D089700DD0AEC /* EmergencyApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,64 +48,64 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5C3262EF2F2D02BB0065443A /* HomeScreen */ = {
+		1027F6662F2D089700DD0AEC /* EmergencyApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5C3262FB2F2D02BC0065443A /* Build configuration list for PBXNativeTarget "HomeScreen" */;
+			buildConfigurationList = 1027F6722F2D089800DD0AEC /* Build configuration list for PBXNativeTarget "EmergencyApp" */;
 			buildPhases = (
-				5C3262EC2F2D02BB0065443A /* Sources */,
-				5C3262ED2F2D02BB0065443A /* Frameworks */,
-				5C3262EE2F2D02BB0065443A /* Resources */,
+				1027F6632F2D089700DD0AEC /* Sources */,
+				1027F6642F2D089700DD0AEC /* Frameworks */,
+				1027F6652F2D089700DD0AEC /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				5C3262F22F2D02BB0065443A /* HomeScreen */,
+				1027F6692F2D089700DD0AEC /* EmergencyApp */,
 			);
-			name = HomeScreen;
+			name = EmergencyApp;
 			packageProductDependencies = (
 			);
-			productName = HomeScreen;
-			productReference = 5C3262F02F2D02BB0065443A /* HomeScreen.app */;
+			productName = EmergencyApp;
+			productReference = 1027F6672F2D089700DD0AEC /* EmergencyApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		5C3262E82F2D02BB0065443A /* Project object */ = {
+		1027F65F2F2D089700DD0AEC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2620;
 				LastUpgradeCheck = 2620;
 				TargetAttributes = {
-					5C3262EF2F2D02BB0065443A = {
+					1027F6662F2D089700DD0AEC = {
 						CreatedOnToolsVersion = 26.2;
 					};
 				};
 			};
-			buildConfigurationList = 5C3262EB2F2D02BB0065443A /* Build configuration list for PBXProject "HomeScreen" */;
+			buildConfigurationList = 1027F6622F2D089700DD0AEC /* Build configuration list for PBXProject "EmergencyApp" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 5C3262E72F2D02BB0065443A;
+			mainGroup = 1027F65E2F2D089700DD0AEC;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 5C3262F12F2D02BB0065443A /* Products */;
+			productRefGroup = 1027F6682F2D089700DD0AEC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5C3262EF2F2D02BB0065443A /* HomeScreen */,
+				1027F6662F2D089700DD0AEC /* EmergencyApp */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		5C3262EE2F2D02BB0065443A /* Resources */ = {
+		1027F6652F2D089700DD0AEC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -115,7 +115,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		5C3262EC2F2D02BB0065443A /* Sources */ = {
+		1027F6632F2D089700DD0AEC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -125,7 +125,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		5C3262F92F2D02BC0065443A /* Debug */ = {
+		1027F6702F2D089800DD0AEC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -160,7 +160,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = H475N4Y277;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -189,7 +188,7 @@
 			};
 			name = Debug;
 		};
-		5C3262FA2F2D02BC0065443A /* Release */ = {
+		1027F6712F2D089800DD0AEC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -224,7 +223,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = H475N4Y277;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -246,16 +244,16 @@
 			};
 			name = Release;
 		};
-		5C3262FC2F2D02BC0065443A /* Debug */ = {
+		1027F6732F2D089800DD0AEC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H475N4Y277;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Acil durum algılama için mikrofon kullanılır.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -266,7 +264,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = HomeScreen.HomeScreen;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emergency.app.EmergencyApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -278,16 +276,16 @@
 			};
 			name = Debug;
 		};
-		5C3262FD2F2D02BC0065443A /* Release */ = {
+		1027F6742F2D089800DD0AEC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H475N4Y277;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Acil durum algılama için mikrofon kullanılır.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -298,7 +296,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = HomeScreen.HomeScreen;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emergency.app.EmergencyApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -313,25 +311,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5C3262EB2F2D02BB0065443A /* Build configuration list for PBXProject "HomeScreen" */ = {
+		1027F6622F2D089700DD0AEC /* Build configuration list for PBXProject "EmergencyApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5C3262F92F2D02BC0065443A /* Debug */,
-				5C3262FA2F2D02BC0065443A /* Release */,
+				1027F6702F2D089800DD0AEC /* Debug */,
+				1027F6712F2D089800DD0AEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5C3262FB2F2D02BC0065443A /* Build configuration list for PBXNativeTarget "HomeScreen" */ = {
+		1027F6722F2D089800DD0AEC /* Build configuration list for PBXNativeTarget "EmergencyApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5C3262FC2F2D02BC0065443A /* Debug */,
-				5C3262FD2F2D02BC0065443A /* Release */,
+				1027F6732F2D089800DD0AEC /* Debug */,
+				1027F6742F2D089800DD0AEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 5C3262E82F2D02BB0065443A /* Project object */;
+	rootObject = 1027F65F2F2D089700DD0AEC /* Project object */;
 }

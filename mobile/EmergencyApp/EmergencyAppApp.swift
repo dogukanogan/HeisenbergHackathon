@@ -1,14 +1,14 @@
 //
-//  HomeScreenApp.swift
-//  HomeScreen
+//  EmergencyAppApp.swift
+//  EmergencyApp
 //
-//  Created by Görkem Çelik on 30.01.2026.
+//  Created by Oguzarda Orhan on 30.01.2026.
 //
 
 import SwiftUI
 
 @main
-struct HomeScreenApp: App {
+struct EmergencyAppApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
