@@ -13,6 +13,9 @@ final class AppRouter: ObservableObject {
     @Published var isRegistered: Bool
 
     init() {
+        #if DEBUG
+        ProfileStore.shared.clear()   // şimdilik her açılışta kayıt sıfırlansın
+        #endif
         self.isRegistered = ProfileStore.shared.isRegistered
     }
 
