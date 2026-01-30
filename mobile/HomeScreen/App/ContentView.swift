@@ -12,20 +12,54 @@ struct ContentView: View {
 
     var body: some View {
         Group {
-            if router.isRegistered {
-                // Arkadaşın HomeView’ını burada çağıracağız.
-                // Şimdilik geçici bir placeholder koyuyoruz.
-                HomePlaceholderView()
-            } else {
+            switch router.route {
+            case .splash:
+                SplashView()
+
+            case .firstRunWelcome:
+                FirstRunWelcomeView(
+                    onRegister: { router.goToRegister() },
+                    onLogin: { router.goToLogin() }
+                )
+
+            case .register:
                 RegisterView(onCompleted: {
                     router.completeRegistration()
                 })
+
+            case .home:
+                // Arkadaşın HomeView’ı gelince burayı HomeView() yapacağız.
+                HomePlaceholderView()
             }
         }
     }
 }
 
-// Arkadaşın HomeView’ı gelene kadar geçici ekran:
+// MARK: - Splash
+private struct SplashView: View {
+    var body: some View {
+        ZStack {
+            DS.Colors.primary.ignoresSafeArea()
+
+            VStack(spacing: DS.Spacing.m) {
+                Image(systemName: "exclamationmark.triangle.fill")
+                    .font(.system(size: 52, weight: .bold))
+                    .foregroundStyle(.white)
+
+                Text("Hoş geldiniz")
+                    .font(.system(size: 28, weight: .bold))
+                    .foregroundStyle(.white)
+
+                Text("Acil Durum Uygulaması")
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundStyle(.white.opacity(0.9))
+            }
+            .padding()
+        }
+    }
+}
+
+// MARK: - Placeholder Home (arkadaşın HomeView gelince silinecek)
 private struct HomePlaceholderView: View {
     var body: some View {
         VStack(spacing: DS.Spacing.m) {

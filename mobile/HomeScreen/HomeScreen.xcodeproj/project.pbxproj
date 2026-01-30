@@ -15,10 +15,12 @@
 		5C00D2C42F2D158100225E3A /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3263102F2D0A9D0065443A /* ProfileStore.swift */; };
 		5C00D2C52F2D158600225E3A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32630E2F2D0A7C0065443A /* SettingsView.swift */; };
 		5C00D2C62F2D15B300225E3A /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32630B2F2D0A2C0065443A /* UserProfile.swift */; };
+		5C00D2CA2F2D430C00225E3A /* FirstRunWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C00D2C92F2D430900225E3A /* FirstRunWelcomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5C00D2BE2F2D146500225E3A /* HomeScreenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenApp.swift; sourceTree = "<group>"; };
+		5C00D2C92F2D430900225E3A /* FirstRunWelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstRunWelcomeView.swift; sourceTree = "<group>"; };
 		5C3262F02F2D02BB0065443A /* HomeScreen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeScreen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C3263082F2D0A010065443A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5C3263092F2D0A100065443A /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 		5C3263012F2D09110065443A /* App */ = {
 			isa = PBXGroup;
 			children = (
+				5C00D2C92F2D430900225E3A /* FirstRunWelcomeView.swift */,
 				5C00D2BE2F2D146500225E3A /* HomeScreenApp.swift */,
 				5C3263092F2D0A100065443A /* AppRouter.swift */,
 				5C3263082F2D0A010065443A /* ContentView.swift */,
@@ -196,6 +199,7 @@
 				5C00D2C22F2D156C00225E3A /* RegisterView.swift in Sources */,
 				5C00D2C62F2D15B300225E3A /* UserProfile.swift in Sources */,
 				5C00D2BF2F2D14E300225E3A /* HomeScreenApp.swift in Sources */,
+				5C00D2CA2F2D430C00225E3A /* FirstRunWelcomeView.swift in Sources */,
 				5C00D2C12F2D155F00225E3A /* AppRouter.swift in Sources */,
 				5C00D2C42F2D158100225E3A /* ProfileStore.swift in Sources */,
 			);
