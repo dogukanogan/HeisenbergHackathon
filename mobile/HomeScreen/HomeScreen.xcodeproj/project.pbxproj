@@ -17,6 +17,11 @@
 		5C00D2C52F2D158600225E3A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32630E2F2D0A7C0065443A /* SettingsView.swift */; };
 		5C00D2C62F2D15B300225E3A /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C32630B2F2D0A2C0065443A /* UserProfile.swift */; };
 		5C00D2CA2F2D430C00225E3A /* FirstRunWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C00D2C92F2D430900225E3A /* FirstRunWelcomeView.swift */; };
+		71B4D1AD2F2D4943004BD72C /* ListeningViewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B4D1AC2F2D4943004BD72C /* ListeningViewModule.swift */; };
+		71B4D1AF2F2D4943004BD72D /* JSONExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B4D1AE2F2D4943004BD72D /* JSONExportView.swift */; };
+		71B4D1B22F2D4943004BD72E /* SoundClassifierService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B4D1B02F2D4943004BD72E /* SoundClassifierService.swift */; };
+		71B4D1B32F2D4943004BD72F /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B4D1B12F2D4943004BD72F /* NotificationService.swift */; };
+		71B6E0B52F2D23E100A0B9A5 /* model21.mlmodel in Resources */ = {isa = PBXBuildFile; fileRef = 71B6E0B32F2D23E100A0B9A4 /* model21.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +36,11 @@
 		5C32630D2F2D0A690065443A /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		5C32630E2F2D0A7C0065443A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		5C3263102F2D0A9D0065443A /* ProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStore.swift; sourceTree = "<group>"; };
-		71B6E0B32F2D23E100A0B9A4 /* model2 1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "model2 1.mlmodel"; sourceTree = "<group>"; };
+		71B4D1AC2F2D4943004BD72C /* ListeningViewModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListeningViewModule.swift; sourceTree = "<group>"; };
+		71B4D1AE2F2D4943004BD72D /* JSONExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONExportView.swift; sourceTree = "<group>"; };
+		71B4D1B02F2D4943004BD72E /* SoundClassifierService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundClassifierService.swift; sourceTree = "<group>"; };
+		71B4D1B12F2D4943004BD72F /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		71B6E0B32F2D23E100A0B9A4 /* model21.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = model21.mlmodel; sourceTree = "<group>"; };
 		71B6E0B42F2D2DBE00A0B9A4 /* HomeScreen-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "HomeScreen-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -49,6 +58,8 @@
 		5C3262E72F2D02BB0065443A = {
 			isa = PBXGroup;
 			children = (
+				71B4D1AC2F2D4943004BD72C /* ListeningViewModule.swift */,
+				71B4D1AB2F2D48FD004BD72C /* Services */,
 				71B6E0B42F2D2DBE00A0B9A4 /* HomeScreen-Info.plist */,
 				5C32630F2F2D0A8E0065443A /* Storage */,
 				5C3263042F2D09530065443A /* Features */,
@@ -56,7 +67,7 @@
 				5C3263022F2D09250065443A /* DesignSystem */,
 				5C3263012F2D09110065443A /* App */,
 				5C3262F12F2D02BB0065443A /* Products */,
-				71B6E0B32F2D23E100A0B9A4 /* model2 1.mlmodel */,
+				71B6E0B32F2D23E100A0B9A4 /* model21.mlmodel */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +120,7 @@
 			children = (
 				10E0A1A32F2D478000057602 /* HomeView.swift */,
 				5C32630D2F2D0A690065443A /* RegisterView.swift */,
+				71B4D1AE2F2D4943004BD72D /* JSONExportView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -127,6 +139,15 @@
 				5C3263102F2D0A9D0065443A /* ProfileStore.swift */,
 			);
 			path = Storage;
+			sourceTree = "<group>";
+		};
+		71B4D1AB2F2D48FD004BD72C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				71B4D1B02F2D4943004BD72E /* SoundClassifierService.swift */,
+				71B4D1B12F2D4943004BD72F /* NotificationService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +211,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71B6E0B52F2D23E100A0B9A5 /* model21.mlmodel in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +232,10 @@
 				5C00D2CA2F2D430C00225E3A /* FirstRunWelcomeView.swift in Sources */,
 				5C00D2C12F2D155F00225E3A /* AppRouter.swift in Sources */,
 				5C00D2C42F2D158100225E3A /* ProfileStore.swift in Sources */,
+				71B4D1AD2F2D4943004BD72C /* ListeningViewModule.swift in Sources */,
+				71B4D1AF2F2D4943004BD72D /* JSONExportView.swift in Sources */,
+				71B4D1B22F2D4943004BD72E /* SoundClassifierService.swift in Sources */,
+				71B4D1B32F2D4943004BD72F /* NotificationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,7 +370,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H475N4Y277;
+				DEVELOPMENT_TEAM = YWZ6YVX8CS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "HomeScreen-Info.plist";
@@ -360,7 +386,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gorkem.emergencyapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dogukanogan.emergencyapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -379,7 +405,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H475N4Y277;
+				DEVELOPMENT_TEAM = YWZ6YVX8CS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "HomeScreen-Info.plist";
@@ -395,7 +421,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gorkem.emergencyapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dogukanogan.emergencyapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
