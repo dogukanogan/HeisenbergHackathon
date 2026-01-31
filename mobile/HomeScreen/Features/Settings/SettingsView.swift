@@ -11,8 +11,7 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var router: AppRouter
     
-
-
+    @State private var isEditing = false
     @State private var firstName = ""
     @State private var lastName = ""
     @State private var birthDate = Date()
@@ -27,6 +26,14 @@ struct SettingsView: View {
     @State private var phone = ""
     @State private var showResetConfirm = false
     @State private var showLogoutConfirm = false
+    
+    // Orijinal değerleri tutmak için (iptal için)
+    @State private var originalFirstName = ""
+    @State private var originalLastName = ""
+    @State private var originalBirthDate = Date()
+    @State private var originalBloodType = "A+"
+    @State private var originalAddresses: [AddressForm] = []
+    @State private var originalPhone = ""
 
 
     private var computedAge: Int {
@@ -44,64 +51,125 @@ struct SettingsView: View {
         NavigationStack {
             Form {
                 Section("Kişisel Bilgiler") {
-                    TextField("Ad", text: $firstName)
-                    TextField("Soyad", text: $lastName)
-
-                    DatePicker("Doğum Tarihi", selection: $birthDate, displayedComponents: .date)
-
-                    Text("Yaş: \(computedAge)")
-                        .foregroundStyle(.secondary)
-
-                    Picker("Kan Grubu", selection: $bloodType) {
-                        ForEach(["A+","A-","B+","B-","AB+","AB-","0+","0-"], id: \.self) { type in
-                            Text(type).tag(type)
+                    if isEditing {
+                        TextField("Ad", text: $firstName)
+                        TextField("Soyad", text: $lastName)
+                        DatePicker("Doğum Tarihi", selection: $birthDate, displayedComponents: .date)
+                        Text("Yaş: \(computedAge)")
+                            .foregroundStyle(.secondary)
+                        Picker("Kan Grubu", selection: $bloodType) {
+                            ForEach(["A+","A-","B+","B-","AB+","AB-","0+","0-"], id: \.self) { type in
+                                Text(type).tag(type)
+                            }
+                        }
+                    } else {
+                        HStack {
+                            Text("Ad")
+                            Spacer()
+                            Text(firstName)
+                                .foregroundStyle(.secondary)
+                        }
+                        HStack {
+                            Text("Soyad")
+                            Spacer()
+                            Text(lastName)
+                                .foregroundStyle(.secondary)
+                        }
+                        HStack {
+                            Text("Doğum Tarihi")
+                            Spacer()
+                            Text(birthDate, style: .date)
+                                .foregroundStyle(.secondary)
+                        }
+                        HStack {
+                            Text("Yaş")
+                            Spacer()
+                            Text("\(computedAge)")
+                                .foregroundStyle(.secondary)
+                        }
+                        HStack {
+                            Text("Kan Grubu")
+                            Spacer()
+                            Text(bloodType)
+                                .foregroundStyle(.secondary)
                         }
                     }
                 }
 
                 Section("Adres") {
-                    ForEach($addresses) { $addr in
-                        VStack(alignment: .leading, spacing: 10) {
-                            TextField("Adres Adı (Ev/İş)", text: $addr.label)
-                            TextField("Adres", text: $addr.addressLine)
-                            TextField("İlçe", text: $addr.district)
-                            TextField("İl", text: $addr.city)
+                    if isEditing {
+                        ForEach($addresses) { $addr in
+                            VStack(alignment: .leading, spacing: 10) {
+                                TextField("Adres Adı (Ev/İş)", text: $addr.label)
+                                TextField("Adres", text: $addr.addressLine)
+                                TextField("İlçe", text: $addr.district)
+                                TextField("İl", text: $addr.city)
+                            }
+                            .padding(.vertical, 6)
                         }
-                        .padding(.vertical, 6)
-                    }
-                    .onDelete { indexSet in
-                        // En az 1 adres kalsın
-                        if addresses.count > 1 {
-                            addresses.remove(atOffsets: indexSet)
+                        .onDelete { indexSet in
+                            // En az 1 adres kalsın
+                            if addresses.count > 1 {
+                                addresses.remove(atOffsets: indexSet)
+                            }
                         }
-                    }
 
-                    Button {
-                        addresses.append(AddressForm(label: "Yeni Adres", addressLine: "", district: "", city: ""))
-                    } label: {
-                        Label("Adres Ekle", systemImage: "plus")
+                        Button {
+                            addresses.append(AddressForm(label: "Yeni Adres", addressLine: "", district: "", city: ""))
+                        } label: {
+                            Label("Adres Ekle", systemImage: "plus")
+                        }
+                    } else {
+                        ForEach(addresses) { addr in
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text(addr.label)
+                                    .font(DS.Typography.section)
+                                Text(addr.addressLine)
+                                    .foregroundStyle(.secondary)
+                                Text("\(addr.district), \(addr.city)")
+                                    .foregroundStyle(.secondary)
+                            }
+                            .padding(.vertical, 4)
+                        }
                     }
                 }
 
                 Section("İletişim") {
-                    TextField("Telefon", text: $phone)
-                        .keyboardType(.phonePad)
+                    if isEditing {
+                        TextField("Telefon", text: $phone)
+                            .keyboardType(.phonePad)
+                    } else {
+                        HStack {
+                            Text("Telefon")
+                            Spacer()
+                            Text(phone.isEmpty ? "Belirtilmemiş" : phone)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
                 }
 
-                Section {
-                    Button("Kaydet") {
-                        saveProfile()
-                        dismiss()
-                    }
-                    .disabled(!canSave)
-
-                    Button("Profili Sıfırla", role: .destructive) {
-                        showResetConfirm = true
-                    }
-                    
-                    Button("Çıkış Yap", role: .destructive) {
-                        showLogoutConfirm = true
+                if isEditing {
+                    Section {
+                        Button("Kaydet") {
+                            saveProfile()
+                            isEditing = false
                         }
+                        .disabled(!canSave)
+
+                        Button("İptal", role: .cancel) {
+                            cancelEditing()
+                        }
+                    }
+                } else {
+                    Section {
+                        Button("Profili Sıfırla", role: .destructive) {
+                            showResetConfirm = true
+                        }
+                        
+                        Button("Çıkış Yap", role: .destructive) {
+                            showLogoutConfirm = true
+                        }
+                    }
                 }
             }
             .tint(DS.Colors.primary)
@@ -109,6 +177,16 @@ struct SettingsView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Geri") { dismiss() }
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    if !isEditing {
+                        Button {
+                            startEditing()
+                        } label: {
+                            Image(systemName: "pencil")
+                        }
+                    }
                 }
             }
             .onAppear { loadProfile() }
@@ -150,6 +228,30 @@ struct SettingsView: View {
         addresses = mapped.isEmpty ? [AddressForm(label: "Ev", addressLine: "", district: "", city: "")] : mapped
     }
 
+    private func startEditing() {
+        // Orijinal değerleri kaydet
+        originalFirstName = firstName
+        originalLastName = lastName
+        originalBirthDate = birthDate
+        originalBloodType = bloodType
+        originalAddresses = addresses.map { AddressForm(id: $0.id, label: $0.label, addressLine: $0.addressLine, district: $0.district, city: $0.city) }
+        originalPhone = phone
+        
+        isEditing = true
+    }
+    
+    private func cancelEditing() {
+        // Orijinal değerlere geri dön
+        firstName = originalFirstName
+        lastName = originalLastName
+        birthDate = originalBirthDate
+        bloodType = originalBloodType
+        addresses = originalAddresses.map { AddressForm(id: $0.id, label: $0.label, addressLine: $0.addressLine, district: $0.district, city: $0.city) }
+        phone = originalPhone
+        
+        isEditing = false
+    }
+    
     private func saveProfile() {
         let trimmedPhone = phone.trimmed
 
@@ -163,6 +265,7 @@ struct SettingsView: View {
         )
 
         ProfileStore.shared.save(profile)
+        isEditing = false
     }
 }
 
@@ -175,17 +278,20 @@ private struct AddressForm: Identifiable, Equatable {
     var city: String
 
     var isValid: Bool {
-        !label.trimmed.isEmpty &&
-        !addressLine.trimmed.isEmpty &&
-        !district.trimmed.isEmpty &&
-        !city.trimmed.isEmpty
+        !label.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
+        !addressLine.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
+        !district.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
+        !city.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 
     func toModel() -> Address {
-        Address(id: id, label: label.trimmed, addressLine: addressLine.trimmed, district: district.trimmed, city: city.trimmed)
+        Address(
+            id: id,
+            label: label.trimmingCharacters(in: .whitespacesAndNewlines),
+            addressLine: addressLine.trimmingCharacters(in: .whitespacesAndNewlines),
+            district: district.trimmingCharacters(in: .whitespacesAndNewlines),
+            city: city.trimmingCharacters(in: .whitespacesAndNewlines)
+        )
     }
 }
 
-private extension String {
-    var trimmed: String { trimmingCharacters(in: .whitespacesAndNewlines) }
-}

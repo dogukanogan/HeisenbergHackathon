@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct ContentView: View {
     @StateObject private var router = AppRouter()
@@ -67,6 +68,12 @@ struct ContentView: View {
                         Text("Lütfen önce kayıt olup bilgilerinizi girin.")
                     }
                     )
+        .onAppear {
+            // Uygulama açıldığında mikrofon iznini sor
+            Task {
+                _ = await AVAudioApplication.requestRecordPermission()
+            }
+        }
     }
     
 }
