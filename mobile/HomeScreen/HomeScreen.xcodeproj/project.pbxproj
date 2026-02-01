@@ -21,6 +21,7 @@
 		71B4D1AF2F2D4943004BD72D /* JSONExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B4D1AE2F2D4943004BD72D /* JSONExportView.swift */; };
 		71B4D1B22F2D4943004BD72E /* SoundClassifierService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B4D1B02F2D4943004BD72E /* SoundClassifierService.swift */; };
 		71B4D1B32F2D4943004BD72F /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B4D1B12F2D4943004BD72F /* NotificationService.swift */; };
+		71B4D1B42F2D4943004BD730 /* BonjourServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B4D1B52F2D4943004BD730 /* BonjourServer.swift */; };
 		71B6E0B52F2D23E100A0B9A5 /* model21.mlmodel in Resources */ = {isa = PBXBuildFile; fileRef = 71B6E0B32F2D23E100A0B9A4 /* model21.mlmodel */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		71B4D1AE2F2D4943004BD72D /* JSONExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONExportView.swift; sourceTree = "<group>"; };
 		71B4D1B02F2D4943004BD72E /* SoundClassifierService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundClassifierService.swift; sourceTree = "<group>"; };
 		71B4D1B12F2D4943004BD72F /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		71B4D1B52F2D4943004BD730 /* BonjourServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonjourServer.swift; sourceTree = "<group>"; };
 		71B6E0B32F2D23E100A0B9A4 /* model21.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = model21.mlmodel; sourceTree = "<group>"; };
 		71B6E0B42F2D2DBE00A0B9A4 /* HomeScreen-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "HomeScreen-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,6 +148,7 @@
 			children = (
 				71B4D1B02F2D4943004BD72E /* SoundClassifierService.swift */,
 				71B4D1B12F2D4943004BD72F /* NotificationService.swift */,
+				71B4D1B52F2D4943004BD730 /* BonjourServer.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				71B4D1AF2F2D4943004BD72D /* JSONExportView.swift in Sources */,
 				71B4D1B22F2D4943004BD72E /* SoundClassifierService.swift in Sources */,
 				71B4D1B32F2D4943004BD72F /* NotificationService.swift in Sources */,
+				71B4D1B42F2D4943004BD730 /* BonjourServer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
