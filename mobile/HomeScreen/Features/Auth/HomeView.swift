@@ -105,10 +105,14 @@ struct HomeView: View {
                         
                         detectedTopSounds = topSounds
                         
+                        // JSON verisini hazırla (top 3 ses + profil)
+                        prepareJSONData(topSounds: topSounds)
+                        
+                        // Her zaman alert göster
+                        showDetectionAlert = true
+                        
                         // En yüksek güven seviyesi 90'ın üstündeyse bildirim gönder
                         if top.confidence >= 0.90 {
-                            showDetectionAlert = true
-                            
                             Task {
                                 let granted = await NotificationService.shared.requestPermission()
                                 if granted {
@@ -119,9 +123,6 @@ struct HomeView: View {
                                 }
                             }
                         }
-                        
-                        // JSON verisini hazırla (top 3 ses + profil)
-                        prepareJSONData(topSounds: topSounds)
                     } else if case .listening = newValue {
                         // Dinleme başladığında progress'i başlat
                         startListeningProgress()
@@ -194,6 +195,9 @@ struct HomeView: View {
     }
     
     private func prepareJSONData(topSounds: [ListeningViewModel.State.TopSound]) {
+        // Bonjour server'ı başlat (eğer başlamadıysa)
+        BonjourServer.shared.start()
+        
         guard let profile = ProfileStore.shared.load() else {
             // Profil yoksa sadece detection bilgileri
             let encoder = JSONEncoder()
@@ -260,6 +264,9 @@ struct HomeView: View {
            let jsonString = String(data: data, encoding: .utf8) {
             jsonData = jsonString
             print("📄 JSON hazırlandı (top \(detections.count) ses + profil)")
+            
+            // macOS uygulamasına gönder
+            BonjourServer.shared.sendJSON(jsonString)
         } else {
             jsonData = "JSON oluşturulamadı"
         }

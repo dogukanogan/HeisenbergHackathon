@@ -112,12 +112,12 @@ final class SoundClassifierService: NSObject {
                 outputBuffer.frameLength = 0
                 
                 var error: NSError?
+                let inputProvidedLock = NSLock()
                 var inputProvided = false
-                let lock = NSLock()
                 
                 let inputBlock: AVAudioConverterInputBlock = { _, outStatus in
-                    lock.lock()
-                    defer { lock.unlock() }
+                    inputProvidedLock.lock()
+                    defer { inputProvidedLock.unlock() }
                     
                     if inputProvided {
                         outStatus.pointee = .noDataNow
