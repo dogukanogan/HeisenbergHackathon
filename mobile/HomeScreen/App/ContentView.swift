@@ -69,9 +69,13 @@ struct ContentView: View {
                     }
                     )
         .onAppear {
-            // Uygulama açıldığında mikrofon iznini sor
+            // Uygulama açıldığında tüm izinleri iste
             Task {
+                // Mikrofon izni
                 _ = await AVAudioApplication.requestRecordPermission()
+                
+                // Konum izni
+                LocationService.shared.requestPermission()
             }
         }
     }

@@ -28,7 +28,7 @@ struct HomeView: View {
                             case .error:
                                 Color.gray
                             default:
-                                DS.Colors.primary
+                                Color(red: 0xB0/255.0, green: 0x00/255.0, blue: 0x20/255.0) // #B00020
                             }
                         }
                         .ignoresSafeArea()
@@ -78,7 +78,7 @@ struct HomeView: View {
                                     .foregroundStyle(.white.opacity(0.8))
                             }
                             
-                            // Dinleme progress (10 saniye)
+                            // Dinleme progress (12 saniye)
                             if case .listening = listeningViewModel.state {
                                 ProgressView(value: listeningProgress, total: 1.0)
                                     .progressViewStyle(.linear)
@@ -181,7 +181,7 @@ struct HomeView: View {
     private func startListeningProgress() {
         listeningProgress = 0.0
         Task {
-            let duration: TimeInterval = 10.0
+            let duration: TimeInterval = 12.0
             let steps = 100
             let stepDuration = duration / Double(steps)
             
@@ -208,6 +208,7 @@ struct HomeView: View {
                 let detections: [Detection]
                 let timestamp: Date
                 let error: String
+                let location: LocationData?
             }
             
             struct Detection: Codable {
@@ -216,14 +217,26 @@ struct HomeView: View {
                 let rank: Int
             }
             
+            struct LocationData: Codable {
+                let latitude: Double
+                let longitude: Double
+            }
+            
             let detections = topSounds.enumerated().map { index, sound in
                 Detection(sound: sound.label, confidence: sound.confidence, rank: index + 1)
+            }
+            
+            // Konum bilgisini al
+            var locationData: LocationData? = nil
+            if let location = LocationService.shared.getCurrentLocation() {
+                locationData = LocationData(latitude: location.latitude, longitude: location.longitude)
             }
             
             let data = DetectionOnly(
                 detections: detections,
                 timestamp: Date(),
-                error: "Profil bilgisi bulunamadı"
+                error: "Profil bilgisi bulunamadı",
+                location: locationData
             )
             
             if let encoded = try? encoder.encode(data),
@@ -241,6 +254,7 @@ struct HomeView: View {
             let detections: [Detection]
             let profile: UserProfile
             let timestamp: Date
+            let location: LocationData?
         }
         
         struct Detection: Codable {
@@ -249,15 +263,30 @@ struct HomeView: View {
             let rank: Int
         }
         
+        struct LocationData: Codable {
+            let latitude: Double
+            let longitude: Double
+        }
+        
         // Top 3 sesi rank ile birlikte ekle
         let detections = topSounds.enumerated().map { index, sound in
             Detection(sound: sound.label, confidence: sound.confidence, rank: index + 1)
         }
         
+        // Konum bilgisini al
+        var locationData: LocationData? = nil
+        if let location = LocationService.shared.getCurrentLocation() {
+            locationData = LocationData(latitude: location.latitude, longitude: location.longitude)
+            print("📍 Konum JSON'a eklendi: \(location.latitude), \(location.longitude)")
+        } else {
+            print("⚠️ Konum bilgisi alınamadı")
+        }
+        
         let exportData = ExportData(
             detections: detections,
             profile: profile,
-            timestamp: Date()
+            timestamp: Date(),
+            location: locationData
         )
         
         if let data = try? encoder.encode(exportData),

@@ -13,5 +13,22 @@
 	</array>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>macOS uygulaması ile iletişim kurmak için yerel ağ erişimi gerekiyor.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Acil durumlarda konumunuzu paylaşmak için konum erişimi gerekiyor.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Acil durumlarda konumunuzu paylaşmak için konum erişimi gerekiyor.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Sesleri algılamak için mikrofon erişimi gerekiyor.</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>homescreen</string>
+			</array>
+			<key>CFBundleURLName</key>
+			<string>com.homescreen.emergency</string>
+		</dict>
+	</array>
 </dict>
 </plist>

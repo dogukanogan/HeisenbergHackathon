@@ -101,7 +101,8 @@ final class DataManager: ObservableObject {
                 phone: "+90 555 123 4567",
                 createdAt: Date()
             ),
-            timestamp: Date().addingTimeInterval(-3600) // 1 saat önce
+            timestamp: Date().addingTimeInterval(-3600), // 1 saat önce
+            location: LocationData(latitude: 40.9889, longitude: 29.0244) // İstanbul Kadıköy koordinatları (Türkiye)
         )
         
         let sample2 = ExportData(
@@ -136,7 +137,8 @@ final class DataManager: ObservableObject {
                 phone: "+90 555 987 6543",
                 createdAt: Date()
             ),
-            timestamp: Date().addingTimeInterval(-7200) // 2 saat önce
+            timestamp: Date().addingTimeInterval(-7200), // 2 saat önce
+            location: LocationData(latitude: 41.0766, longitude: 29.0230) // İstanbul Levent koordinatları (Türkiye)
         )
         
         let sample3 = ExportData(
@@ -164,7 +166,8 @@ final class DataManager: ObservableObject {
                 phone: "+90 555 456 7890",
                 createdAt: Date()
             ),
-            timestamp: Date().addingTimeInterval(-10800) // 3 saat önce
+            timestamp: Date().addingTimeInterval(-10800), // 3 saat önce
+            location: nil // Bu örnek için konum yok (test için)
         )
         
         detections = [sample1, sample2, sample3]

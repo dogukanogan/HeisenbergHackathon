@@ -14,6 +14,7 @@ struct macAppApp: App {
             DetectionListView()
         }
         .windowResizability(.contentSize)
-        .defaultSize(width: 1000, height: 700)
+        .defaultSize(width: 1200, height: 800)
+        .windowStyle(.automatic)
     }
 }

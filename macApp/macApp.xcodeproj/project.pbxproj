@@ -401,11 +401,9 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = macApp/Info.plist;
-				INFOPLIST_KEY_NSBonjourServices = (
-					"_emergencyapp._tcp",
-				);
-				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "iOS uygulaması ile iletişim kurmak için yerel ağ erişimi gerekiyor.";
+				INFOPLIST_KEY_NSBonjourServices = _emergencyapp._tcp;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "iOS uygulaması ile iletişim kurmak için yerel ağ erişimi gerekiyor.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -437,11 +435,9 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = macApp/Info.plist;
-				INFOPLIST_KEY_NSBonjourServices = (
-					"_emergencyapp._tcp",
-				);
-				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "iOS uygulaması ile iletişim kurmak için yerel ağ erişimi gerekiyor.";
+				INFOPLIST_KEY_NSBonjourServices = _emergencyapp._tcp;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "iOS uygulaması ile iletişim kurmak için yerel ağ erişimi gerekiyor.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

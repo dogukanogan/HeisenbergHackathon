@@ -1,5 +1,17 @@
 import Foundation
 
+struct LocationData: Codable, Equatable {
+    let latitude: Double
+    let longitude: Double
+    
+    var isValid: Bool {
+        // Geçersiz koordinatları kontrol et (0,0 veya çok büyük değerler)
+        return latitude != 0 && longitude != 0 &&
+               latitude >= -90 && latitude <= 90 &&
+               longitude >= -180 && longitude <= 180
+    }
+}
+
 struct Address: Codable, Equatable, Identifiable {
     var id: UUID = UUID()
     var label: String
@@ -107,10 +119,11 @@ struct ExportData: Codable, Equatable, Identifiable {
     let detections: [Detection]
     let profile: UserProfile
     let timestamp: Date
+    let location: LocationData?
     
     // iOS'tan gelen JSON'da id yok, decode sırasında otomatik oluştur
     enum CodingKeys: String, CodingKey {
-        case detections, profile, timestamp
+        case detections, profile, timestamp, location
     }
     
     init(from decoder: Decoder) throws {
@@ -118,13 +131,15 @@ struct ExportData: Codable, Equatable, Identifiable {
         detections = try container.decode([Detection].self, forKey: .detections)
         profile = try container.decode(UserProfile.self, forKey: .profile)
         timestamp = try container.decode(Date.self, forKey: .timestamp)
+        location = try container.decodeIfPresent(LocationData.self, forKey: .location)
         id = UUID() // Her decode'da yeni ID oluştur
     }
     
-    init(id: UUID = UUID(), detections: [Detection], profile: UserProfile, timestamp: Date) {
+    init(id: UUID = UUID(), detections: [Detection], profile: UserProfile, timestamp: Date, location: LocationData? = nil) {
         self.id = id
         self.detections = detections
         self.profile = profile
         self.timestamp = timestamp
+        self.location = location
     }
 }

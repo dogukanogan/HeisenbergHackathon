@@ -14,6 +14,13 @@ struct HomeScreenApp: App {
     init() {
         // Uygulama başladığında Bonjour server'ı başlat
         BonjourServer.shared.start()
+        
+        // Konum servisini başlat (izin verildiyse)
+        Task { @MainActor in
+            if LocationService.shared.isAuthorized {
+                LocationService.shared.startLocationUpdates()
+            }
+        }
     }
     
     var body: some Scene {
